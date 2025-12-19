@@ -1,6 +1,14 @@
+import Footer from "./components/Footer"
+import Header from "./components/Header"
+import Hero from "./components/Hero"  
+
 const App = () => {
   return (
-    <div className="text-5xl text-red-600">App</div>
+    <div className="">
+      <Header/>
+      <Hero/>
+      <Footer/>
+    </div>
   )
 }
 
