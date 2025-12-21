@@ -8,6 +8,7 @@ import NoticePage from './components/NoticePage.jsx'
 import NoticeDetailPage from './components/NoticeDetailPage.jsx'
 import LoginForm from './components/LoginForm.jsx'
 import RegistrationForm from './components/RegistrationForm.jsx'
+import NoticeDataForm from './components/NoticeDataForm.jsx'
 
 createRoot(document.getElementById('root')).render(
     <>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')).render(
                 </Route>
                 <Route path="/login" element={<LoginForm />} />
                 <Route path="/register" element={<RegistrationForm />} />
+                <Route path="/admin" element={<NoticeDataForm />} />
             </Routes>
         </BrowserRouter>
     </>

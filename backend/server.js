@@ -3,6 +3,7 @@ const cors = require("cors")
 
 //module imports
 const authRouter=require("./routes/auth")
+const noticeRouter=require("./routes/notice")
 const connectDB=require("./config/db")
 
 const app=express()
@@ -14,6 +15,7 @@ app.use(cors())
 
 //route middlewares
 app.use("/auth",authRouter)
+app.use("/notices",noticeRouter)
 
 
 

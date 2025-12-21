@@ -1,6 +1,8 @@
+import NoticeDataForm from "./NoticeDataForm"
+
 const AdminPage = () => {
   return (
-    <div>AdminPage</div>
+    <NoticeDataForm/>
   )
 }
 

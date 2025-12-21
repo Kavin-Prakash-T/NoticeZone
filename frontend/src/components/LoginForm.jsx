@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
 import  axios from "axios"
 import {toast} from "react-toastify"
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const LoginForm = () => {
+
+  const navigate=useNavigate()
   
   const [username, setUsername] = useState("");
 
@@ -24,6 +26,7 @@ const LoginForm = () => {
     sessionStorage.setItem("token", data.token)
     sessionStorage.setItem('isLoggedIn', 'true');
     sessionStorage.setItem('role', data.role);
+    navigate("/")
   }catch(err){
     if(err.response.status === 400){
       toast.error("User not found");
