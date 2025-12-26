@@ -50,7 +50,7 @@ const LoginForm = () => {
         <input
           type="text"
           placeholder="Email"
-          className="border border-[#73E6CB] text-white p-2 mt-5 rounded-sm w-[70%] placeholder-gray-400"
+          className="border border-[#73E6CB] bg-[#ECFDF7] placeholder-[#6FAFA0] p-2 text-[#0A3C30] rounded-sm w-[70%] focus:outline-none focus:ring-2 focus:ring-[#00674F]"
           value={email}
           onChange={handleEmailChange}
         />
@@ -58,7 +58,7 @@ const LoginForm = () => {
         <input
           type="password"
           placeholder="Password"
-          className="border border-[#73E6CB] p-2 text-white rounded-sm my-5 w-[70%] placeholder-gray-400"
+          className="border my-5 border-[#73E6CB] bg-[#ECFDF7] placeholder-[#6FAFA0] p-2 text-[#0A3C30] rounded-sm w-[70%] focus:outline-none focus:ring-2 focus:ring-[#00674F]"
           ref={passwordRef}
         />
 
