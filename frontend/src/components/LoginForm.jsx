@@ -7,11 +7,11 @@ const LoginForm = () => {
 
   const navigate=useNavigate()
   
-  const [username, setUsername] = useState("");
+  const [email, setUsername] = useState("");
 
   const passwordRef = useRef("");
 
-  const handleUsernameChange = (e) => {
+  const handleEmailChange = (e) => {
     setUsername(e.target.value);
   };
 
@@ -19,7 +19,7 @@ const LoginForm = () => {
     e.preventDefault();
     try{
     const { data } = await axios.post("http://localhost:3000/auth/login", {
-      email: username,
+      email: email,
       password: passwordRef.current.value
     });
     toast.success(data.messsage)
@@ -37,33 +37,35 @@ const LoginForm = () => {
 }
 
   return (
-    <div className="bg-slate-800">
-    <div className="flex justify-start text-white p-8">
-       <Link to="/"><button className="bg-blue-600 px-3 py-1 rounded-lg hover:bg-blue-700">
+    <div className="bg-[#ECFDF7] h-screen">
+    <div className="flex justify-end text-white p-8">
+       <Link to="/"><button className="bg-white border-[#3EBB9E] text-[#00674F] px-3 py-1 pb-2 rounded-lg hover:bg-[#ECFDF7]">
           Home
         </button></Link>
     </div>
-    <div className="bg-slate-800 h-screen flex items-center justify-center">
+    <div className="bg-[#ECFDF7] mt-20 flex items-center justify-center">
 
-      <div className="w-100 flex flex-col justify-center items-center p-10  bg-slate-700 shadow-lg rounded-xl">
-        <h1 className="font-bold text-2xl mb-5 text-white">Login</h1>
+      <div className="w-100 border-[#73E6CB] flex flex-col justify-center items-center p-10  bg-[#FFFFFF] shadow-lg rounded-xl">
+        <h1 className="font-bold text-2xl mb-5 text-[#0A3C30]">Login</h1>
         <input
           type="text"
-          placeholder="Username"
-          className="border border-gray-300 text-white p-2 mt-5 rounded-sm w-[70%] placeholder-gray-400"
-          value={username}
-          onChange={handleUsernameChange}
+          placeholder="Email"
+          className="border border-[#73E6CB] text-white p-2 mt-5 rounded-sm w-[70%] placeholder-gray-400"
+          value={email}
+          onChange={handleEmailChange}
         />
 
         <input
           type="password"
           placeholder="Password"
-          className="border border-gray-300 p-2 text-white rounded-sm my-5 w-[70%] placeholder-gray-400"
+          className="border border-[#73E6CB] p-2 text-white rounded-sm my-5 w-[70%] placeholder-gray-400"
           ref={passwordRef}
         />
 
+        <p className="text-[#4B8376] pb-4">Don't have an account? <Link to='/register' className="text-[#00674F] hover:text-[#0A3C30]">Sign Up</Link></p>
+
         <button
-          className="bg-blue-600 text-white text-lg px-3 py-1 rounded-lg"
+          className="bg-[#00674F] text-white text-lg px-3 py-1 rounded-lg hover:bg-[#0A3C30]"
           type="submit"
           onClick={handleSubmit}
         >
