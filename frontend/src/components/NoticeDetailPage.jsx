@@ -7,6 +7,11 @@ const NoticeDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [role, setRole] = useState(sessionStorage.getItem("role"))
+  useEffect(() => {
+    setRole(sessionStorage.getItem("role"))
+  }, [])
+
   const [noticeDetail, setNoticeDetail] = useState({});
 
   useEffect(() => {
@@ -30,7 +35,6 @@ const NoticeDetailPage = () => {
   return (
     <div className="min-h-screen bg-[#ECFDF7] px-6 py-12">
 
-      {/* Main Card */}
       <div className="
     max-w-7xl 
     mx-auto 
@@ -74,6 +78,7 @@ const NoticeDetailPage = () => {
 
       </div>
 
+      {( role === "admin" &&
       <div className="max-w-7xl mx-auto flex justify-end gap-5 mt-10">
         <button
           onClick={handleDelete}
@@ -88,6 +93,7 @@ const NoticeDetailPage = () => {
           Update
         </button>
       </div>
+      )}
 
     </div>
 
