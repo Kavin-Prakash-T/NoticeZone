@@ -45,4 +45,16 @@ const deleteNotice=async(req,res)=>{
     }
 }
 
-module.exports = { getNotices, addNotice,getNoticesById,deleteNotice };
+const updateNotice=async(req,res)=>{
+    const id=req.params.id;
+    const { title, content,image } = req.body;
+    try{
+        const updatedNotice=await Notice.findByIdAndUpdate(id,{ title, content, image },{new:true});
+        res.status(200).json({ message: 'Notice updated successfully',notice:updatedNotice });
+    }   
+    catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
+
+module.exports = { getNotices, addNotice,getNoticesById,deleteNotice,updateNotice };
