@@ -27,6 +27,7 @@ const LoginForm = () => {
     sessionStorage.setItem('isLoggedIn', 'true');
     sessionStorage.setItem('role', data.role);
     navigate("/")
+    toast.success("Login Successful")
   }catch(err){
     if(err.response.status === 400){
       toast.error("User not found");
