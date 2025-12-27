@@ -7,7 +7,7 @@ const NoticePage = () => {
 
   useEffect(() => {
     const fetchNotices = async () => {
-      const res = await axios.get(`http://localhost:3000/notices`);
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/notices`);
       setNotices(res.data);
     };
     fetchNotices();
@@ -15,7 +15,7 @@ const NoticePage = () => {
 
   return (
     <div className="min-h-screen bg-[#ECFDF7] px-6 py-10">
-      
+
       <h1 className="text-3xl font-bold text-center text-[#0A3C30] mb-10">
         All Notices
       </h1>

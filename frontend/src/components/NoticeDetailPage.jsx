@@ -17,7 +17,7 @@ const NoticeDetailPage = () => {
   useEffect(() => {
     const fetchNoticeDetail = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/notices/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/notices/${id}`);
         setNoticeDetail(res.data);
       } catch (err) {
         console.error(err);
@@ -27,7 +27,7 @@ const NoticeDetailPage = () => {
   }, [id]);
 
   const handleDelete = async () => {
-    const res = await axios.delete(`http://localhost:3000/notices/${id}`);
+    const res = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/notices/${id}`);
     toast.success("Notice deleted successfully");
     navigate("/notices");
   };
@@ -78,21 +78,21 @@ const NoticeDetailPage = () => {
 
       </div>
 
-      {( role === "admin" &&
-      <div className="max-w-7xl mx-auto flex justify-end gap-5 mt-10">
-        <button
-          onClick={handleDelete}
-          className="px-6 py-3 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition"
-        >
-          Delete
-        </button>
+      {(role === "admin" &&
+        <div className="max-w-7xl mx-auto flex justify-end gap-5 mt-10">
+          <button
+            onClick={handleDelete}
+            className="px-6 py-3 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition"
+          >
+            Delete
+          </button>
 
-        <button
-          className="px-6 py-3 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
-        >
-          Update
-        </button>
-      </div>
+          <button
+            className="px-6 py-3 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
+          >
+            Update
+          </button>
+        </div>
       )}
 
     </div>

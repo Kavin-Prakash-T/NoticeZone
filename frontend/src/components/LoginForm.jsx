@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
-import  axios from "axios"
-import {toast} from "react-toastify"
+import axios from "axios"
+import { toast } from "react-toastify"
 import { Link, useNavigate } from "react-router";
 
 const LoginForm = () => {
 
-  const navigate=useNavigate()
-  
+  const navigate = useNavigate()
+
   const [email, setUsername] = useState("");
 
   const passwordRef = useRef("");
@@ -17,64 +17,64 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-    const { data } = await axios.post("http://localhost:3000/auth/login", {
-      email: email,
-      password: passwordRef.current.value
-    });
-    toast.success(data.messsage)
-    sessionStorage.setItem("token", data.token)
-    sessionStorage.setItem('isLoggedIn', 'true');
-    sessionStorage.setItem('role', data.role);
-    navigate("/")
-    toast.success("Login Successful")
-  }catch(err){
-    if(err.response.status === 400){
-      toast.error("User not found");
-    }else{
-      toast.error("An error occurred");
+    try {
+      const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/login`, {
+        email: email,
+        password: passwordRef.current.value
+      });
+      toast.success(data.messsage)
+      sessionStorage.setItem("token", data.token)
+      sessionStorage.setItem('isLoggedIn', 'true');
+      sessionStorage.setItem('role', data.role);
+      navigate("/")
+      toast.success("Login Successful")
+    } catch (err) {
+      if (err.response.status === 400) {
+        toast.error("User not found");
+      } else {
+        toast.error("An error occurred");
+      }
     }
   }
-}
 
   return (
     <div className="bg-[#ECFDF7] h-screen">
-    <div className="flex justify-end text-white p-8">
-       <Link to="/"><button className="bg-white border-[#3EBB9E] text-[#00674F] px-3 py-1 pb-2 rounded-lg hover:bg-[#ECFDF7]">
+      <div className="flex justify-end text-white p-8">
+        <Link to="/"><button className="bg-white border-[#3EBB9E] text-[#00674F] px-3 py-1 pb-2 rounded-lg hover:bg-[#ECFDF7]">
           Home
         </button></Link>
-    </div>
-    <div className="bg-[#ECFDF7] mt-20 flex items-center justify-center">
-
-      <div className="w-100 border-[#73E6CB] flex flex-col justify-center items-center p-10  bg-[#FFFFFF] shadow-lg rounded-xl">
-        <h1 className="font-bold text-2xl mb-5 text-[#0A3C30]">Login</h1>
-        <input
-          type="text"
-          placeholder="Email"
-          className="border border-[#73E6CB] bg-[#ECFDF7] placeholder-[#6FAFA0] p-2 text-[#0A3C30] rounded-sm w-[70%] focus:outline-none focus:ring-2 focus:ring-[#00674F]"
-          value={email}
-          onChange={handleEmailChange}
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          className="border my-5 border-[#73E6CB] bg-[#ECFDF7] placeholder-[#6FAFA0] p-2 text-[#0A3C30] rounded-sm w-[70%] focus:outline-none focus:ring-2 focus:ring-[#00674F]"
-          ref={passwordRef}
-        />
-
-        <p className="text-[#4B8376] pb-4">Don't have an account? <Link to='/register' className="text-[#00674F] hover:text-[#0A3C30]">Sign Up</Link></p>
-
-        <button
-          className="bg-[#00674F] text-white text-lg px-3 py-1 rounded-lg hover:bg-[#0A3C30]"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Login
-        </button>
       </div>
+      <div className="bg-[#ECFDF7] mt-20 flex items-center justify-center">
 
-    </div>
+        <div className="w-100 border-[#73E6CB] flex flex-col justify-center items-center p-10  bg-[#FFFFFF] shadow-lg rounded-xl">
+          <h1 className="font-bold text-2xl mb-5 text-[#0A3C30]">Login</h1>
+          <input
+            type="text"
+            placeholder="Email"
+            className="border border-[#73E6CB] bg-[#ECFDF7] placeholder-[#6FAFA0] p-2 text-[#0A3C30] rounded-sm w-[70%] focus:outline-none focus:ring-2 focus:ring-[#00674F]"
+            value={email}
+            onChange={handleEmailChange}
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            className="border my-5 border-[#73E6CB] bg-[#ECFDF7] placeholder-[#6FAFA0] p-2 text-[#0A3C30] rounded-sm w-[70%] focus:outline-none focus:ring-2 focus:ring-[#00674F]"
+            ref={passwordRef}
+          />
+
+          <p className="text-[#4B8376] pb-4">Don't have an account? <Link to='/register' className="text-[#00674F] hover:text-[#0A3C30]">Sign Up</Link></p>
+
+          <button
+            className="bg-[#00674F] text-white text-lg px-3 py-1 rounded-lg hover:bg-[#0A3C30]"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Login
+          </button>
+        </div>
+
+      </div>
     </div>
   );
 };

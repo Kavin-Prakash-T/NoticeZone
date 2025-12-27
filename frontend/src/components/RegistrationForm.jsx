@@ -28,7 +28,7 @@ const RegistrationForm = () => {
 
     try {
       const { data } = await axios.post(
-        `http://localhost:3000/auth/register`,
+        `${import.meta.env.VITE_API_BASE_URL}/auth/register`,
         requestData
       );
       toast.success(data.message);
