@@ -7,7 +7,7 @@ const auth=(req,res,next)=>{
         return
     }
     try{
-        const decoded=jwt.verify(token,"strangerthings")
+        const decoded=jwt.verify(token,process.env.SECRET_KEY)
         req.userData={id:decoded.id,email:decoded.email,role:decoded.role}
         next()
     }catch(err){
