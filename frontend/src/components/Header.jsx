@@ -9,7 +9,7 @@ const Header = () => {
   }, [])
 
   return (
-    <nav className="flex justify-between border-b border-[#73E6CB] shadow-sm text-[#0A3C30] items-center p-4 bg-[#ECFDF7]">
+    <nav className="flex justify-between border-b border-[#73E6CB] shadow-sm text-[#0A3C30] items-center p-4 fixed z-10 bg-[#ECFDF7]">
       <Link to="/" className="flex gap-2 items-center">
         <img src="/logo.png" alt="logo" className="rounded-[50px] w-12.5 h-12.5" />
         <h1 className="text-2xl font-bold">NoticeZone</h1>
