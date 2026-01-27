@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router";
 import { toast } from "react-toastify";
 
@@ -10,12 +10,54 @@ const NoticeDataForm = () => {
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
 
+  const [updateId, setUpdateId] = useState(sessionStorage.getItem("updateId"));
+
+  useEffect(() => {
+    const fetchNoticeDetail = async () => {
+      if (updateId) {
+        try {
+          const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/notices/${updateId}`);
+          setTitle(res.data.title);
+          setContent(res.data.content);
+          setImage(res.data.image || "");
+        } catch (err) {
+          console.error(err);
+          toast.error("Failed to fetch notice details");
+        }
+      }
+    };
+    fetchNoticeDetail();
+  }, [updateId]);
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      const updatedNoticeData = {
+        title,
+        content,
+        image,
+      };
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/notices/${updateId}`, updatedNoticeData);
+      toast.success("Notice Updated Successfully");
+      sessionStorage.removeItem("updateId");
+      navigate("/notices");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to update notice");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const noticeData = { title, content, image };
-    await axios.post(`${import.meta.env.VITE_API_BASE_URL}/notices`, noticeData);
-    toast.success("Notice Posted Successfully");
-    navigate("/notices");
+    try {
+      const noticeData = { title, content, image };
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/notices`, noticeData);
+      toast.success("Notice Posted Successfully");
+      navigate("/notices");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to post notice");
+    }
   };
 
   return (
@@ -27,11 +69,11 @@ const NoticeDataForm = () => {
       </div>
       <div className="flex justify-center mt-15">
         <form
-          onSubmit={handleSubmit}
+          onSubmit={updateId ? handleUpdate : handleSubmit}
           className="bg-white w-full max-w-lg rounded-xl shadow-lg border border-emerald-200 p-6"
         >
           <h2 className="text-2xl font-semibold text-emerald-900 mb-6 text-center">
-            Post New Notice
+            {updateId ? "Update Notice" : "Post New Notice"}
           </h2>
 
           <div className="mb-4">
@@ -75,7 +117,7 @@ const NoticeDataForm = () => {
             type="submit"
             className="w-full bg-emerald-700 text-white py-2.5 rounded-lg font-semibold hover:bg-emerald-900 transition"
           >
-            Submit Notice
+            {updateId ? "Update Notice" : "Submit Notice"}
           </button>
         </form>
       </div>

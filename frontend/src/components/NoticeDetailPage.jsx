@@ -32,6 +32,11 @@ const NoticeDetailPage = () => {
     navigate("/notices");
   };
 
+  const handleUpdate = () => {
+    sessionStorage.setItem("updateId", id);
+    navigate(`/admin`);
+  }
+
   return (
     <div className="min-h-screen bg-[#ECFDF7] px-6 py-12">
 
@@ -89,6 +94,7 @@ const NoticeDetailPage = () => {
 
           <button
             className="px-6 py-3 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
+            onClick={handleUpdate}
           >
             Update
           </button>
