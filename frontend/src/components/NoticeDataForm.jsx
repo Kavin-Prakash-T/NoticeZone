@@ -81,17 +81,17 @@ const NoticeDataForm = () => {
 
   return (
     <div className="min-h-screen bg-emerald-50">
-      <div className="flex justify-end text-white p-8">
+      <div className="flex justify-end text-white p-4 sm:p-8">
         <Link to="/"><button className="bg-white border-[#3EBB9E] text-[#00674F] px-3 py-1 pb-2 rounded-lg hover:bg-[#ECFDF7]">
           Home
         </button></Link>
       </div>
-      <div className="flex justify-center mt-15">
+      <div className="flex justify-center px-4 sm:px-6 mt-4 sm:mt-15">
         <form
           onSubmit={updateId ? handleUpdate : handleSubmit}
-          className="bg-white w-full max-w-lg rounded-xl shadow-lg border border-emerald-200 p-6"
+          className="bg-white w-full max-w-lg rounded-xl shadow-lg border border-emerald-200 p-4 sm:p-6"
         >
-          <h2 className="text-2xl font-semibold text-emerald-900 mb-6 text-center">
+          <h2 className="text-xl sm:text-2xl font-semibold text-emerald-900 mb-4 sm:mb-6 text-center">
             {updateId ? "Update Notice" : "Post New Notice"}
           </h2>
 
