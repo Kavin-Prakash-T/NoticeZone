@@ -9,9 +9,9 @@ const NoticeSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    image:{
-        type:String,
-        required:true,
+    pdfUrl: {
+        type: String,
+        required: true
     },
     createdAt: {
         type: Date,
@@ -23,4 +23,4 @@ const NoticeSchema = new mongoose.Schema({
     }
 });
 
- module.exports = mongoose.model('Notice', NoticeSchema);
+module.exports = mongoose.model('Notice', NoticeSchema);
