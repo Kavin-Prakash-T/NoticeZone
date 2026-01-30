@@ -19,7 +19,6 @@ const Header = () => {
           <h1 className="text-2xl font-bold">NoticeZone</h1>
         </Link>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 items-center">
           <Link to="/">Home</Link>
           <Link to="/notices">All Notices</Link>
