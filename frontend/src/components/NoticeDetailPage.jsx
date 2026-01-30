@@ -40,37 +40,7 @@ const NoticeDetailPage = () => {
   return (
     <div className="min-h-screen bg-[#ECFDF7] px-6 py-12">
 
-      <div className="
-    max-w-7xl 
-    mx-auto 
-    bg-white 
-    border border-[#73E6CB] 
-    rounded-2xl 
-    shadow-lg 
-    p-10
-    flex flex-col md:flex-row
-    gap-12
-    items-start
-  ">
-        <div className="
-        w-full 
-        md:w-1/2 
-        min-h-150
-        bg-[#F0FDFA]
-        border border-[#73E6CB]
-        rounded-xl
-        flex 
-        items-center 
-        justify-center
-        p-4
-      ">
-          <img
-            src={noticeDetail.image}
-            alt={noticeDetail.title}
-            className="max-w-full max-h-full object-contain"
-          />
-        </div>
-
+      <div className="max-w-7xl mx-auto  bg-white border border-[#73E6CB] rounded-2xl shadow-lg p-10 flex flex-col md:flex-row gap-12 items-start">
         <div className="w-full md:w-1/2 flex flex-col">
           <h1 className="text-3xl font-bold text-[#0A3C30] text-center mb-6">
             {noticeDetail.title}
@@ -79,6 +49,14 @@ const NoticeDetailPage = () => {
           <p className="text-[#4B8376] text-center text-xl leading-relaxed">
             {noticeDetail.content}
           </p>
+        </div>
+
+        <div className="w-full md:w-1/2 min-h-150bg-[#F0FDFA] border border-[#73E6CB]rounded-xl flex items-center justify-center p-4">
+          <img
+            src={noticeDetail.image}
+            alt={noticeDetail.title}
+            className="max-w-full max-h-full object-contain"
+          />
         </div>
 
       </div>
