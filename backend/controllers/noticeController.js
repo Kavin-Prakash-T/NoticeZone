@@ -1,4 +1,5 @@
 const Notice = require('../models/Notice');
+const cloudinary = require('../config/cloudinary');
 
 const getNotices = async (req, res) => {
     try {
@@ -52,13 +53,13 @@ const deleteNotice = async (req, res) => {
     try {
         const notice = await Notice.findById(id);
 
-        if (notice.pdfUrl) {
-            const publicId = notice.pdfUrl
-                .split("/")
-                .slice(-2)
-                .join("/")
-                .replace(".pdf", "");
+        if (!notice) {
+            return res.status(404).json({ message: "Notice not found" });
+        }
 
+
+        if (notice.pdfUrl) {
+            const publicId = notice.pdfUrl.split("/").slice(-2).join("/").replace(".pdf", "");
             await cloudinary.uploader.destroy(publicId, {
                 resource_type: "raw"
             });
@@ -83,6 +84,19 @@ const updateNotice = async (req, res) => {
         const updateData = { title, content };
 
         if (req.file) {
+            const notice = await Notice.findById(id);
+            if (!notice) {
+                return res.status(404).json({ message: "Notice not found" });
+            }
+
+            if (notice.pdfUrl) {
+                const publicId = notice.pdfUrl.split("/").slice(-2).join("/").replace(".pdf", "");
+
+                await cloudinary.uploader.destroy(publicId, {
+                    resource_type: "raw"
+                });
+            }
+
             updateData.pdfUrl = req.file.path;
         }
 
@@ -96,10 +110,12 @@ const updateNotice = async (req, res) => {
             message: "Notice updated successfully",
             notice: updatedNotice
         });
+
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 };
+
 
 
 module.exports = { getNotices, addNotice, getNoticesById, deleteNotice, updateNotice };
