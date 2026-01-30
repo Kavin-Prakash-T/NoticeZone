@@ -51,11 +51,11 @@ const NoticeDetailPage = () => {
           </p>
         </div>
 
-        <div className="w-full md:w-1/2 min-h-150bg-[#F0FDFA] border border-[#73E6CB]rounded-xl flex items-center justify-center p-4">
-          <img
-            src={noticeDetail.image}
-            alt={noticeDetail.title}
-            className="max-w-full max-h-full object-contain"
+        <div className="w-full md:w-1/2 bg-[#F0FDFA] border border-[#73E6CB] rounded-xl overflow-auto" style={{ maxHeight: '80vh' }}>
+          <iframe
+            src={`https://docs.google.com/viewer?url=${encodeURIComponent(noticeDetail.pdfUrl)}&embedded=true`}
+            className="w-full h-200 border-0"
+            title="Notice PDF"
           />
         </div>
 
